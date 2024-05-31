@@ -1,0 +1,34 @@
+{
+  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  "files.associations": {
+    ".coveragerc": "toml",
+    ".env": "properties",
+    "pyproject.toml": "toml"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "mypy-type-checker.path": [
+    "~/.env/python",
+    "-m",
+    "mypy"
+  ], //
+  "flake8.path": [
+    "~/.env/python",
+    "-m",
+    "flake8"
+  ],
+  "black-formatter.path": [
+    "-m",
+    "black",
+    "~/.env/python"
+  ]
+}

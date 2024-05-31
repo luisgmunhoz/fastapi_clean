@@ -1,7 +1,7 @@
 on: pull_request
 
 jobs:
-  lint:
+  lint_and_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,7 +15,7 @@ jobs:
           poetry config virtualenvs.create false
       - name: Lint, format and static type check
         run: |
-          poetry run black --check.
+          poetry run black --check
           poetry run flake8
           poetry run mypy
       - name: Test

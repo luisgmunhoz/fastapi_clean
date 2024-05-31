@@ -4,8 +4,8 @@ from strawberry.types import Info
 from configs.GraphQL import get_author_service, get_book_service
 from models.AuthorModel import Author
 from models.BookModel import Book
-from schemas.graphql.Author import AuthorMutationSchema, AuthorSchema
-from schemas.graphql.Book import BookMutationSchema, BookSchema
+from schemas.graphql.Author import AuthorMutationSchema
+from schemas.graphql.Book import BookMutationSchema
 
 
 @strawberry.type(description="Mutate all Entity")

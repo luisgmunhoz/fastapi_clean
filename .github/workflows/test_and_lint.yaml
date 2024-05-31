@@ -1,32 +1,25 @@
 on: pull_request
 
 jobs:
-  lint:
+  lint_and_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: 3.10
+          python-version: "3.10"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip poetry
           poetry install
-          flake8
-          mypy
+          poetry config virtualenvs.create false
       - name: Lint, format and static type check
         run: |
-          poetry run black --check.
-          petry run flake8
+          poetry run black --check .
+          poetry run flake8
           poetry run mypy
       - name: Test
         run: |
           poetry run pytest
         env:
           ENV: test
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1

@@ -20,7 +20,7 @@
     "~/.env/python",
     "-m",
     "mypy"
-  ], //
+  ],
   "flake8.path": [
     "~/.env/python",
     "-m",

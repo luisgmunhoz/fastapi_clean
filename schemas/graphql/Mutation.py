@@ -2,16 +2,14 @@ import strawberry
 from strawberry.types import Info
 
 from configs.GraphQL import get_author_service, get_book_service
-from models.AuthorModel import Author
-from models.BookModel import Book
-from schemas.graphql.Author import AuthorMutationSchema
-from schemas.graphql.Book import BookMutationSchema
+from schemas.graphql.Author import AuthorMutationSchema, AuthorSchema
+from schemas.graphql.Book import BookMutationSchema, BookSchema
 
 
 @strawberry.type(description="Mutate all Entity")
 class Mutation:
     @strawberry.field(description="Adds a new Author")
-    def add_author(self, author: AuthorMutationSchema, info: Info) -> Author:
+    def add_author(self, author: AuthorMutationSchema, info: Info) -> AuthorSchema:
         author_service = get_author_service(info)
         return author_service.create(author)
 
@@ -26,12 +24,12 @@ class Mutation:
         author_id: int,
         author: AuthorMutationSchema,
         info: Info,
-    ) -> Author:
+    ) -> AuthorSchema:
         author_service = get_author_service(info)
         return author_service.update(author_id, author)
 
     @strawberry.field(description="Add a new Book")
-    def add_book(self, book: BookMutationSchema, info: Info) -> Book:
+    def add_book(self, book: BookMutationSchema, info: Info) -> BookSchema:
         book_service = get_book_service(info)
         return book_service.create(book)
 
@@ -46,6 +44,6 @@ class Mutation:
         book_id: int,
         book: BookMutationSchema,
         info: Info,
-    ) -> Book:
+    ) -> BookSchema:
         book_service = get_book_service(info)
         return book_service.update(book_id, book)

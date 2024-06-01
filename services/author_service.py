@@ -1,10 +1,10 @@
 from fastapi import Depends
 
-from models.AuthorModel import Author
-from models.BookModel import Book
-from repositories.AuthorRepository import AuthorRepository
-from schemas.graphql.Author import AuthorMutationSchema
-from schemas.pydantic.AuthorSchema import AuthorSchema
+from models.author_model import Author
+from models.book_model import Book
+from repositories.author_repository import AuthorRepository
+from schemas.graphql.author import AuthorMutationSchema
+from schemas.pydantic.author_schema import AuthorSchema
 from services import Service
 
 

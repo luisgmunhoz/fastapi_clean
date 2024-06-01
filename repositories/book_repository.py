@@ -1,8 +1,8 @@
 from fastapi import Depends
 from sqlalchemy.orm import Session, lazyload
 
-from configs.Database import get_db_connection
-from models.BookModel import Book
+from configs.database import get_db_connection
+from models.book_model import Book
 from repositories import RepositoryMeta
 
 

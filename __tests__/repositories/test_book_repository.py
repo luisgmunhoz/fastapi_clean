@@ -3,8 +3,8 @@ from unittest.mock import create_autospec, patch
 
 from sqlalchemy.orm import Session
 
-from models.BookModel import Book
-from repositories.BookRepository import BookRepository
+from models.book_model import Book
+from repositories.book_repository import BookRepository
 
 
 class TestBookRepository(TestCase):
@@ -16,7 +16,7 @@ class TestBookRepository(TestCase):
         self.session = create_autospec(Session)
         self.book_repository = BookRepository(self.session)
 
-    @patch("models.BookModel.Book", autospec=True)
+    @patch("models.book_model.Book", autospec=True)
     def test_create(self, Book: Book) -> None:
         book = Book(name="Harry Potter and The Order of Phoenix")
         self.book_repository.create(book)
@@ -24,7 +24,7 @@ class TestBookRepository(TestCase):
         # Should call add method on Session
         self.session.add.assert_called_once_with(book)
 
-    @patch("models.BookModel.Book", autospec=True)
+    @patch("models.book_model.Book", autospec=True)
     def test_delete(self, Book: Book) -> None:
         book = Book(id=1)
         self.book_repository.delete(book)
@@ -32,7 +32,7 @@ class TestBookRepository(TestCase):
         # Should call delete method on Session
         self.session.delete.assert_called_once_with(book)
 
-    @patch("models.BookModel.Book", autospec=True)
+    @patch("models.book_model.Book", autospec=True)
     def test_get(self, Book: Book) -> None:
         book = Book(id=1)
         self.book_repository.get(book)
@@ -40,7 +40,7 @@ class TestBookRepository(TestCase):
         # Should call get method on Session
         self.session.get.assert_called_once()
 
-    @patch("models.BookModel.Book", autospec=True)
+    @patch("models.book_model.Book", autospec=True)
     def test_list(self, Book: Book) -> None:
         self.book_repository.list_items(None, 100, 0)
 
@@ -54,7 +54,7 @@ class TestBookRepository(TestCase):
             name="Peaky Blinders"
         )
 
-    @patch("models.BookModel.Book", autospec=True)
+    @patch("models.book_model.Book", autospec=True)
     def test_update(self, Book: Book) -> None:
         book = Book(name="The Wealth of Nations")
         self.book_repository.update(id=1, book=book)

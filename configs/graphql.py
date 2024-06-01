@@ -1,11 +1,11 @@
 from fastapi import Depends
 from strawberry.types import Info
 
-from models.AuthorModel import Author
-from models.BookModel import Book
+from models.author_model import Author
+from models.book_model import Book
 from services import Service
-from services.AuthorService import AuthorService
-from services.BookService import BookService
+from services.author_service import AuthorService
+from services.book_service import BookService
 
 
 # GraphQL Dependency Context

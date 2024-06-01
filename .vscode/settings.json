@@ -30,5 +30,10 @@
     "-m",
     "black",
     "~/.env/python"
-  ]
+  ],
+  "python.testing.pytestArgs": [
+    "__tests__"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true
 }

@@ -1,10 +1,10 @@
 from unittest import TestCase
 from unittest.mock import create_autospec, patch
 
-from repositories.AuthorRepository import AuthorRepository
-from repositories.BookRepository import BookRepository
-from schemas.pydantic.BookSchema import BookAuthorPostRequestSchema, BookSchema
-from services.BookService import BookService
+from repositories.author_repository import AuthorRepository
+from repositories.book_repository import BookRepository
+from schemas.pydantic.book_schema import BookAuthorPostRequestSchema, BookSchema
+from services.book_service import BookService
 
 
 class TestBookService(TestCase):
@@ -19,7 +19,7 @@ class TestBookService(TestCase):
         self.book_service = BookService(self.author_repository, self.book_repository)
 
     @patch(
-        "schemas.pydantic.BookSchema.BookSchema",
+        "schemas.pydantic.book_schema.BookSchema",
         autospec=True,
     )
     def test_create(self, BookSchema: BookSchema) -> None:
@@ -56,7 +56,7 @@ class TestBookService(TestCase):
         )
 
     @patch(
-        "schemas.pydantic.BookSchema.BookSchema",
+        "schemas.pydantic.book_schema.BookSchema",
         autospec=True,
     )
     def test_update(self, BookSchema: BookSchema) -> None:
@@ -75,7 +75,7 @@ class TestBookService(TestCase):
         self.book_repository.get.assert_called_once()
 
     @patch(
-        "schemas.pydantic.BookSchema.BookAuthorPostRequestSchema",
+        "schemas.pydantic.book_schema.BookAuthorPostRequestSchema",
         autospec=True,
     )
     def test_add_author(

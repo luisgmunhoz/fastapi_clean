@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, status
 
-from schemas.pydantic.AuthorSchema import AuthorPostRequestSchema, AuthorSchema
-from schemas.pydantic.BookSchema import BookSchema
-from services.AuthorService import AuthorService
+from schemas.pydantic.author_schema import AuthorPostRequestSchema, AuthorSchema
+from schemas.pydantic.book_schema import BookSchema
+from services.author_service import AuthorService
 
 AuthorRouter = APIRouter(prefix="/v1/authors", tags=["author"])
 

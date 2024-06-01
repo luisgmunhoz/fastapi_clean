@@ -1,17 +1,17 @@
 from sqlalchemy import Column, Integer, PrimaryKeyConstraint, String
 from sqlalchemy.orm import relationship
 
-from models.BaseModel import EntityMeta
-from models.BookAuthorAssociation import book_author_association
+from models.base_model import EntityMeta
+from models.book_author_association import book_author_association
 
 
-class Author(EntityMeta):
-    __tablename__ = "authors"
+class Book(EntityMeta):
+    __tablename__ = "books"
 
     id = Column(Integer)
-    name = Column(String(16), nullable=False)
-    books = relationship(
-        "Book",
+    name = Column(String(40), nullable=False)
+    authors = relationship(
+        "Author",
         lazy="dynamic",
         secondary=book_author_association,
     )

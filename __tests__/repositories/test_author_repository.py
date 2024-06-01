@@ -3,8 +3,8 @@ from unittest.mock import create_autospec, patch
 
 from sqlalchemy.orm import Session
 
-from models.AuthorModel import Author
-from repositories.AuthorRepository import AuthorRepository
+from models.author_model import Author
+from repositories.author_repository import AuthorRepository
 
 
 class TestAuthorRepository(TestCase):
@@ -16,7 +16,7 @@ class TestAuthorRepository(TestCase):
         self.session = create_autospec(Session)
         self.author_repository = AuthorRepository(self.session)
 
-    @patch("models.AuthorModel.Author", autospec=True)
+    @patch("models.author_model.Author", autospec=True)
     def test_create(self, Author: Author) -> None:
         author = Author(name="JK Rowling")
         self.author_repository.create(author)
@@ -24,7 +24,7 @@ class TestAuthorRepository(TestCase):
         # Should call add method on Session
         self.session.add.assert_called_once_with(author)
 
-    @patch("models.AuthorModel.Author", autospec=True)
+    @patch("models.author_model.Author", autospec=True)
     def test_delete(self, Author: Author) -> None:
         author = Author(id=1)
         self.author_repository.delete(author)
@@ -32,7 +32,7 @@ class TestAuthorRepository(TestCase):
         # Should call delete method on Session
         self.session.delete.assert_called_once_with(author)
 
-    @patch("models.AuthorModel.Author", autospec=True)
+    @patch("models.author_model.Author", autospec=True)
     def test_get(self, Author: Author) -> None:
         author = Author(id=1)
         self.author_repository.get(author)
@@ -40,7 +40,7 @@ class TestAuthorRepository(TestCase):
         # Should call get method on Session
         self.session.get.assert_called_once()
 
-    @patch("models.AuthorModel.Author", autospec=True)
+    @patch("models.author_model.Author", autospec=True)
     def test_list(self, Author: Author) -> None:
         self.author_repository.list_items(None, 100, 0)
 
@@ -54,7 +54,7 @@ class TestAuthorRepository(TestCase):
             name="Stephen Knight"
         )
 
-    @patch("models.AuthorModel.Author", autospec=True)
+    @patch("models.author_model.Author", autospec=True)
     def test_update(self, Author: Author) -> None:
         author = Author(name="Ray Dalio")
         self.author_repository.update(id=1, author=author)

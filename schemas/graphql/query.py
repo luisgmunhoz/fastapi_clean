@@ -1,9 +1,9 @@
 import strawberry
 from strawberry.types import Info
 
-from configs.GraphQL import get_author_service, get_book_service
-from schemas.graphql.Author import BookSchema
-from schemas.graphql.Author import AuthorSchema
+from configs.graphql import get_author_service, get_book_service
+from schemas.graphql.author import BookSchema
+from schemas.graphql.author import AuthorSchema
 
 
 @strawberry.type(description="Query all entities")

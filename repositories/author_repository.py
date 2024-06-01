@@ -1,8 +1,8 @@
 from fastapi import Depends
 from sqlalchemy.orm import Session, lazyload
 
-from configs.Database import get_db_connection
-from models.AuthorModel import Author
+from configs.database import get_db_connection
+from models.author_model import Author
 from repositories import RepositoryMeta
 
 
@@ -46,6 +46,8 @@ class AuthorRepository(RepositoryMeta[Author, int]):
         return author
 
     def delete(self, author: Author) -> None:
+        id = author.id
+        author = self.db.get(Author, id)
         self.db.delete(author)
         self.db.commit()
         self.db.flush()

@@ -3,13 +3,13 @@ from metadata.Tags import Tags
 from strawberry import Schema
 from strawberry.fastapi import GraphQLRouter
 
-from configs.Environment import get_environment_variables
-from configs.GraphQL import get_graphql_context
-from models.BaseModel import init
-from routers.v1.AuthorRouter import AuthorRouter
-from routers.v1.BookRouter import BookRouter
-from schemas.graphql.Mutation import Mutation
-from schemas.graphql.Query import Query
+from configs.environment import get_environment_variables
+from configs.graphql import get_graphql_context
+from models.base_model import init
+from routers.v1.author_router import AuthorRouter
+from routers.v1.book_router import BookRouter
+from schemas.graphql.mutation import Mutation
+from schemas.graphql.query import Query
 
 # Application Environment Configuration
 env = get_environment_variables()

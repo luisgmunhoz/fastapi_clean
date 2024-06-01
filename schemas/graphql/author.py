@@ -2,7 +2,7 @@ from typing import List
 
 import strawberry
 
-from schemas.graphql.Book import BookSchema
+from schemas.graphql.book import BookSchema
 
 
 @strawberry.type(description="Author Schema")

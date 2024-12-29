@@ -1,41 +1,26 @@
-from fastapi import FastAPI
-from strawberry import Schema
-from strawberry.fastapi import GraphQLRouter
+from fastapi import Depends, FastAPI
 
 from configs.environment import get_environment_variables
-from configs.graphql import get_graphql_context
+from configs.middleware import get_current_user
 from metadata.tags import Tags
 from models.base_model import init
-from schemas.graphql.mutation import Mutation
-from schemas.graphql.query import Query
 
 # Application Environment Configuration
 env = get_environment_variables()
 
 # Core Application Instance
-app = FastAPI(
-    title=env.APP_NAME,
-    version=env.API_VERSION,
-    openapi_tags=Tags,
-)
-
-# Add Routers
+app = FastAPI(title=env.APP_NAME, version=env.API_VERSION, openapi_tags=Tags)
 
 
-# GraphQL Schema and Application Instance
-schema = Schema(query=Query, mutation=Mutation)
-graphql = GraphQLRouter(
-    schema,
-    graphiql=env.DEBUG_MODE,
-    context_getter=get_graphql_context,
-)
+@app.get("/ping")
+def ping():
+    return {"message": "pong"}
 
-# Integrate GraphQL Application to the Core one
-app.include_router(
-    graphql,
-    prefix="/graphql",
-    include_in_schema=False,
-)
+
+@app.get("/authenticated-ping")
+def authenticated_ping(user: dict = Depends(get_current_user)):
+    return {"message": "pong", "user": user}
+
 
 # Initialise Data Model Attributes
 init()

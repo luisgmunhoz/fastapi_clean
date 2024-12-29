@@ -8,7 +8,7 @@ M = TypeVar("M")
 K = TypeVar("K")
 
 #################################
-# Abstract Class for Repository #
+# Abstract Class for Service #
 #################################
 
 
@@ -20,12 +20,12 @@ class Service(Generic[M, K]):
 
     # Delete an existing instance of the Model
     @abstractmethod
-    def delete(self, id: K) -> None:
+    def delete(self, svc_id: K) -> None:
         pass
 
     # Fetch an existing instance of the Model by it's unique Id
     @abstractmethod
-    def get(self, id: K) -> M:
+    def get(self, svc_id: K) -> M:
         pass
 
     # lists all existing instance of the Model
@@ -40,5 +40,5 @@ class Service(Generic[M, K]):
 
     # Updates an existing instance of the Model
     @abstractmethod
-    def update(self, id: K, instance: M) -> M:
+    def update(self, svc_id: K, instance: M) -> M:
         pass

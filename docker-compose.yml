@@ -4,21 +4,19 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      DB_NAME: postgres
-      DB_USER: postgres
-      DB_PASSWORD: postgres
-      DB_HOST: db
-      DB_PORT: 5432
+      DATABASE_HOSTNAME: db
+      DATABASE_NAME: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: postgres
     env_file:
       - ./.env
-    command: poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000
+    command: poetry run uvicorn main:app --host 0.0.0.0 --port 8000
     ports:
       - 8000:8000
     depends_on:
-      migrate:
-        condition: service_completed_successfully
-      collectstatic:
-        condition: service_completed_successfully
+      db:
+        condition: service_healthy
     restart: unless-stopped
   db:
     image: postgres:16.1
@@ -27,7 +25,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     ports:
-      - 5432:5432
+      - 5433:5432
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
       interval: 10s
